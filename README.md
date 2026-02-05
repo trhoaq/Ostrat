@@ -1,4 +1,4 @@
-# 📘 OCR_TRANS
+# 📘 Ostrat
 
 Ứng dụng OCR (Nhận dạng ký tự quang học) giúp nhận dạng văn bản từ hình ảnh và xuất kết quả ra các định dạng tài liệu phổ biến như PDF và DOCX. Ứng dụng này có giao diện web thân thiện, cho phép người dùng dễ dàng tải lên và xử lý tài liệu.
 

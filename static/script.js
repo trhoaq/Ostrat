@@ -10,6 +10,12 @@ const rendered = document.getElementById("rendered");
 const editorWrapper = document.getElementById("editor-wrapper");
 const resetBtn = document.getElementById("resetBtn");
 
+//Dark mode 
+document.getElementById("toggleThemeBtn").addEventListener("click", function() {
+    document.body.classList.toggle("dark-mode");
+    this.textContent = document.body.classList.contains("dark-mode") ? "Light Mode" : "Dark Mode";
+});
+
 // Markdown editor
 const simplemde = new SimpleMDE({
   element: document.getElementById("editor"),

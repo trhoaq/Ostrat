@@ -18,22 +18,19 @@ def ocr_bytes_to_markdown(image_bytes: bytes) -> str:
     Hãy đọc toàn bộ nội dung trong ảnh và trả về kết quả ở dạng Markdown.
     Đảm bảo các quy tắc sau:
     1. Văn bản thường giữ nguyên.
-    2. Bảng phải được định dạng chính xác theo cú pháp Markdown table (| col1 | col2 |).
-    3. Công thức toán học (equations) phải được bao quanh bởi dấu đô la:
-       - Inline math: `$equation$` (ví dụ: `$E=mc^2$`)
-       - Display block math: `$$equation$$` trên một dòng riêng biệt (ví dụ: `$$\sum_{i=0}^n i^2 = \frac{n(n+1)(2n+1)}{6}$$`)
-    4. Mỗi công thức toán học (equation) cần phải tách riêng ra 1 dòng.
-    5. Sau khi chuyển về dạng markdown thì cần phải phiên dịch từ tiếng anh qua tiếng việt.
-    6. Đảm bảo thứ tự các câu và không cần dịch những bảng, hình ảnh, đồ thị.
-    7. KHÔNG thêm bất kỳ giải thích nào, chỉ xuất ra Markdown hợp lệ.
-    8. Khi ocr giữ nguyên các kí tự đặc biệt của file .md
-    9. NẾU có thì phần đáp án cách nhau bởi A B C D thì bạn hãy xuống dòng 2 lần (LƯU Ý: tuyệt đối không hiện thị kí tự <br><br>).
-    10. ĐẶC BIỆT Lưu ý, dưới mỗi câu không được có cái đường kẻ ngang dài, trừ khi trong ảnh có.
-    11. loại bỏ các kí tự " ``` " và " --- "
+    2. Dịch văn bản qua tiếng việt và giữ lại 1 số từ ngữ chuyên ngành ở tiếng anh, chú ý ngữ nghĩa sao cho trôi chảy
+    3. Bảng phải được định dạng chính xác theo cú pháp Markdown table (| col1 | col2 |).
+    4. Công thức toán học (equations) phải được bao quanh bởi dấu đô la:
+       - Inline math: `$equation$` (ví dụ: $E=mc^2$)
+       - Display block math: `$$equation$$` trên một dòng riêng biệt (ví dụ: $$\sum_{i=0}^n i^2 = \frac{n(n+1)(2n+1)}{6}$$)
+    5. Mỗi công thức toán học (equation) cần phải tách riêng ra 1 dòng.
+    6. KHÔNG thêm bất kỳ giải thích nào, chỉ xuất ra Markdown hợp lệ.
+    7. Khi ocr loại bỏ các kí tự đặc biệt của file .md trừ $ hoặc |, loại bỏ `
+    8. ĐẶC BIỆT Lưu ý, chỉ xuất tiếng Việt.
     """
 
     response = client.models.generate_content(
-        model="gemini-1.5-flash",
+        model="gemini-2.5-flash",
         contents=[
             types.Part.from_bytes(data=image_bytes, mime_type="image/jpeg"),
             prompt
@@ -51,7 +48,7 @@ def markdown_to_docx(md_text: str, out_path: str):
             outputfile=out_path,
             extra_args=[
                 '--standalone',
-                '--mathml'  # ép công thức thành OMML (Office MathML)
+                '--mathml'
             ]
         )
     except Exception as e:

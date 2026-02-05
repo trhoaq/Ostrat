@@ -1,13 +1,18 @@
 body {
-  font-family: system-ui, Arial;
+  font-family: system-ui, Arial, sans-serif;
   margin: 16px;
   display: flex;
   flex-direction: column;
   height: 95vh;
+  background: #f4f6f9;
+  color: #333;
 }
 
 h2 {
   margin-top: 0;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #2c3e50;
 }
 
 #dropzone {
@@ -20,12 +25,42 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 12px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+#dropzone:hover {
+  border-color: #b5e1ff;
+  background: #ecf7ff;
 }
 
 #controls {
   margin-bottom: 12px;
   display: flex;
   gap: 8px;
+  justify-content: center;
+}
+
+#controls button {
+  background: #b5e1ff;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+#controls button:hover {
+  background: #b5e1ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+#controls button:active {
+  transform: scale(0.96);
 }
 
 #editor-container {
@@ -40,6 +75,19 @@ h2 {
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+#editor-wrapper h3,
+#preview-wrapper h3 {
+  background: #b5e1ff;
+  color: #fff;
+  padding: 10px;
+  margin: 0;
+  font-size: 1rem;
 }
 
 #editor {
@@ -49,6 +97,7 @@ h2 {
 .CodeMirror {
   min-height: 100% !important;
   height: auto !important;
+  border-radius: 0 0 12px 12px;
 }
 
 .CodeMirror-scroll {
@@ -56,21 +105,39 @@ h2 {
 }
 
 #rendered {
-  border: 1px solid #ddd;
-  padding: 10px;
-  flex: 1;
-  background: #fafafa;
-  overflow-y: auto;
-}
-
-/* GitHub markdown override */
-#rendered {
   flex: 1;
   padding: 20px;
-  border: 1px solid #ccc;
   background: #fff;
-  color: #000;
+  color: #222;
   overflow-y: auto;
+  border-radius: 0 0 12px 12px;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+#rendered h1, 
+#rendered h2, 
+#rendered h3, 
+#rendered h4 {
+  color: #2c3e50;
+  margin-top: 1em;
+}
+
+#rendered p {
+  margin-bottom: 0.8em;
+}
+
+#rendered code {
+  background: #f4f4f4;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+#rendered pre code {
+  display: block;
+  padding: 10px;
+  overflow-x: auto;
 }
 
 #rendered.markdown-body {
@@ -82,3 +149,48 @@ h2 {
 mjx-container {
   font-size: 110% !important;
 }
+
+body.dark-mode {
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark-mode h2 {
+  color: #f5f5f5;
+}
+
+body.dark-mode #dropzone {
+  background: #2b2b2b;
+  border-color: #555;
+  color: #ddd;
+}
+
+body.dark-mode #controls button {
+  background: #555;
+  color: #fff;
+}
+
+body.dark-mode #controls button:hover {
+  background: #777;
+}
+
+body.dark-mode #editor-wrapper,
+body.dark-mode #preview-wrapper {
+  background: #2b2b2b;
+  box-shadow: 0 2px 6px rgba(255,255,255,0.1);
+}
+
+body.dark-mode #editor-wrapper h3,
+body.dark-mode #preview-wrapper h3 {
+  background: #444;
+  color: #fff;
+}
+
+body.dark-mode #rendered {
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark-mode #rendered code {
+  background: #333;
+  color: #f0f0f0;
